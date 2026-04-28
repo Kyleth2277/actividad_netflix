@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Infraestructura base para servicios internos de Netflix'
+
+Resources:
+  # Bucket para almacenar logs o assets de video
+  NetflixAssetsBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub 'netflix-internal-assets-${AWS::AccountId}'
+
+  # Instancia EC2 estandarizada para el servicio
+  InternalServiceInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t3.medium
+      ImageId: ami-0c55b159cbfafe1f0 # Amazon Linux 2 (Ejemplo)
+      Tags:
+        - Key: Name
+          Value: NetflixInternalService
