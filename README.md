@@ -33,7 +33,7 @@ Solución: Al estar definida por código, eliminamos el problema de "configuraci
 
 ¿Por qué usar esto? En lugar de configurar servidores a mano (lo cual toma mucho tiempo y causa errores), ejecutamos la plantilla y en pocos minutos tenemos todo el entorno listo y estandarizado.
 
-## 🚀 Diseño del Pipeline CI/CD
+##  Diseño del Pipeline CI/CD
 
 Para eliminar los despliegues manuales y garantizar que el código sea confiable antes de llegar a producción, se ha diseñado el siguiente flujo automatizado:
 
@@ -47,7 +47,7 @@ Para eliminar los despliegues manuales y garantizar que el código sea confiable
 
 ---
 
-### 🛠️ Detalle de las Etapas
+###  Detalle de las Etapas
 
 1. **Source:** Cualquier cambio en el repositorio dispara el proceso automáticamente.
 2. **Build:** La aplicación se empaqueta con todas sus librerías. Esto soluciona el problema de "en mi computadora sí funciona".
