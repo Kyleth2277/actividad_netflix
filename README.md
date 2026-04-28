@@ -54,3 +54,21 @@ Para eliminar los despliegues manuales y garantizar que el código sea confiable
 3. **Test:** Antes de instalar nada, el sistema verifica que la nueva versión esté lista. Si los tests fallan, el despliegue se detiene.
 4. **Deploy:** Se actualizan los servidores de Netflix de forma estandarizada usando la infraestructura definida en código.
 5. **Monitoreo:** Si algo sale mal después del despliegue, el equipo recibe una notificación inmediata para actuar.
+
+
+## Parte 8. Monitoreo y Respuesta
+
+Para resolver la falta de visibilidad sobre el desempeño de la aplicación, se establece una estrategia de observabilidad basada en Amazon CloudWatch. El objetivo es detectar anomalías en tiempo real y actuar antes de que afecten a los usuarios finales.
+
+### Métricas de Monitoreo
+
+* **Uso de CPU:** Se monitorea la carga de procesamiento en las instancias EC2. Un consumo superior al 80% de forma sostenida indica la necesidad de aumentar la capacidad de cómputo.
+* **Errores de Aplicación (Status 5XX):** Se contabilizan los errores internos del servidor. Un incremento repentino en esta métrica es un indicador directo de que el código desplegado tiene fallas críticas.
+* **Latencia de Respuesta:** Se mide el tiempo que tarda el servicio en procesar las solicitudes. Superar el umbral de 200ms activa una revisión de posibles cuellos de botella en la base de datos o la red.
+
+### Configuración de Alertas y Acciones
+
+1. **Detección y Alarma:** CloudWatch evaluará las métricas cada minuto. Si una métrica cruza el umbral definido, se activará una alarma de estado de alerta.
+2. **Respuesta Automática:** En caso de alta carga de CPU, se configurará una política de Auto Scaling para lanzar nuevas instancias automáticamente, distribuyendo la carga de trabajo.
+3. **Notificación al Equipo:** Ante errores de aplicación o latencia alta, el sistema enviará una notificación inmediata a los ingenieros de guardia. Esto permite realizar un diagnóstico rápido utilizando los logs centralizados en S3.
+4. **Protocolo de Recuperación:** Si el error se detecta inmediatamente después de un despliegue, el equipo procederá a realizar un rollback (reversión) a la versión estable anterior para minimizar el tiempo de inactividad.
