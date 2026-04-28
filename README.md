@@ -23,11 +23,11 @@ Portabilidad: Se garantiza que lo que corre en el laptop del desarrollador corre
 
 Para garantizar que todos los servidores sean idénticos, utilizamos AWS CloudFormation. Estos son los recursos clave definidos en infraestructura.yaml:
 
-S3 Bucket: * Función: Almacena de forma centralizada los archivos de la aplicación, imágenes y logs de errores.
+S3 Bucket: Función: Almacena de forma centralizada los archivos de la aplicación, imágenes y logs de errores.
 
 Solución: Evita que cada servidor tenga archivos distintos; todos consultan la misma "fuente de verdad".
 
-Instancia EC2: * Función: Es el servidor donde se ejecuta nuestra aplicación dentro de Docker.
+Instancia EC2: Función: Es el servidor donde se ejecuta nuestra aplicación dentro de Docker.
 
 Solución: Al estar definida por código, eliminamos el problema de "configuraciones distintas". Cada servidor nuevo será una copia exacta del anterior, con la misma memoria, CPU y sistema operativo.
 
