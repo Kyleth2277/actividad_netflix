@@ -18,3 +18,17 @@ Imagen de python
 Aislamiento: La aplicación lleva sus propias librerías; no depende del sistema operativo del servidor.
 
 Portabilidad: Se garantiza que lo que corre en el laptop del desarrollador correrá exactamente igual en producción.
+
+## punto 6
+
+Para garantizar que todos los servidores sean idénticos, utilizamos AWS CloudFormation. Estos son los recursos clave definidos en infraestructura.yaml:
+
+S3 Bucket: * Función: Almacena de forma centralizada los archivos de la aplicación, imágenes y logs de errores.
+
+Solución: Evita que cada servidor tenga archivos distintos; todos consultan la misma "fuente de verdad".
+
+Instancia EC2: * Función: Es el servidor donde se ejecuta nuestra aplicación dentro de Docker.
+
+Solución: Al estar definida por código, eliminamos el problema de "configuraciones distintas". Cada servidor nuevo será una copia exacta del anterior, con la misma memoria, CPU y sistema operativo.
+
+¿Por qué usar esto? En lugar de configurar servidores a mano (lo cual toma mucho tiempo y causa errores), ejecutamos la plantilla y en pocos minutos tenemos todo el entorno listo y estandarizado.
