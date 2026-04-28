@@ -32,3 +32,25 @@ Instancia EC2: Función: Es el servidor donde se ejecuta nuestra aplicación den
 Solución: Al estar definida por código, eliminamos el problema de "configuraciones distintas". Cada servidor nuevo será una copia exacta del anterior, con la misma memoria, CPU y sistema operativo.
 
 ¿Por qué usar esto? En lugar de configurar servidores a mano (lo cual toma mucho tiempo y causa errores), ejecutamos la plantilla y en pocos minutos tenemos todo el entorno listo y estandarizado.
+
+## 🚀 Diseño del Pipeline CI/CD
+
+Para eliminar los despliegues manuales y garantizar que el código sea confiable antes de llegar a producción, se ha diseñado el siguiente flujo automatizado:
+
+| Etapa | Herramienta | Acción Realizada | Beneficio |
+| :--- | :--- | :--- | :--- |
+| **Source** | GitHub | El desarrollador sube código a la rama `main`. | Centralización del código. |
+| **Build** | Docker | Se construye la imagen de la aplicación (`Dockerfile`). | Entornos idénticos siempre. |
+| **Test** | PyTest / Bash | Se ejecutan pruebas de validación automática. | Evita subir errores a producción. |
+| **Deploy** | AWS CodeDeploy | Se despliega el contenedor en las instancias EC2. | Despliegue rápido y sin manos. |
+| **Monitor** | CloudWatch | Se vigilan métricas de CPU y errores en tiempo real. | Respuesta rápida ante fallos. |
+
+---
+
+### 🛠️ Detalle de las Etapas
+
+1. **Source:** Cualquier cambio en el repositorio dispara el proceso automáticamente.
+2. **Build:** La aplicación se empaqueta con todas sus librerías. Esto soluciona el problema de "en mi computadora sí funciona".
+3. **Test:** Antes de instalar nada, el sistema verifica que la nueva versión esté lista. Si los tests fallan, el despliegue se detiene.
+4. **Deploy:** Se actualizan los servidores de Netflix de forma estandarizada usando la infraestructura definida en código.
+5. **Monitoreo:** Si algo sale mal después del despliegue, el equipo recibe una notificación inmediata para actuar.
