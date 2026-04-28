@@ -10,3 +10,11 @@ El monitoreo actual no permite detectar rápidamente errores de desempeño.
 El director técnico solicita una propuesta rápida pero sólida para estandarizar el entorno, automatizar tareas clave y preparar un flujo de despliegue más confiable.
 
 Tu tarea será actuar como consultor DevOps y generar una solución inicial que ayude a reducir estos problemas.
+
+## Docker
+
+Imagen de python
+
+Aislamiento: La aplicación lleva sus propias librerías; no depende del sistema operativo del servidor.
+
+Portabilidad: Se garantiza que lo que corre en el laptop del desarrollador correrá exactamente igual en producción.
