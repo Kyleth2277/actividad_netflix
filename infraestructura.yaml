@@ -13,7 +13,7 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       InstanceType: t3.medium
-      ImageId: ami-0c55b159cbfafe1f0 # Amazon Linux 2 (Ejemplo)
+      ImageId: ami-0c55b159cbfafe1f0 # Amazon Linux 2
       Tags:
         - Key: Name
           Value: NetflixInternalService
